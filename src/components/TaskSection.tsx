@@ -15,13 +15,13 @@ export function TaskSection() {
                     <div>
                         <strong className={style.created}>Tarefas criadas</strong>
                         <div className={style.infoCircle}>
-                            <span>0</span>
+                            <strong>0</strong>
                         </div>
                     </div>
                     <div>
                         <strong className={style.done}>Concluídas</strong>
                         <div className={style.infoCircle}>
-                            <span>0</span>
+                            <strong>0</strong>
                         </div>
                     </div>
                 </header>
