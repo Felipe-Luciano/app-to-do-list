@@ -1,0 +1,105 @@
+.taskSection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+    align-items: center;
+}
+
+.taskSection .taskForm {
+    position: relative;
+    top: -1.6875rem;
+    max-width: 46rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height: 3.375rem;
+}
+
+.taskForm > input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 1rem 1rem; 
+    background: var(--gray-500);
+    border: 0;
+    color: var(--gray-100);
+}
+
+.taskForm > button {
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 140%;
+    border-radius: 8px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    background: var(--blue-600);
+    color: var(--gray-100);
+    gap: 0.5rem;
+    padding: 1rem 1rem;
+}
+
+.taskSection .taskList {
+    max-width: 46rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.taskList .taskListHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.taskListHeader > div {
+    display: flex;
+    gap: 1rem;
+}
+
+.created {
+    color: var(--blue-300);
+    font-size: 0.875rem;
+}
+
+.done {
+    color: var(--purple-300);
+    font-size: 0.875rem;
+}
+
+.infoCircle {
+    background-color: var(--gray-400);
+    border-radius: 999px;
+    padding: 0.125rem 0.5rem;
+}
+
+.infoCircle > strong {
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.taskList .emptyListContent {
+    border-top: 1px #333333 solid;
+    border-radius: 8px;
+    padding-top: 4rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.emptyListContent .clipBoardImg {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.emptyListContent .textContent {
+    color: var(--gray-300);
+    text-align: center;
+}

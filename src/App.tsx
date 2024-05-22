@@ -1,9 +1,12 @@
+import { Header } from './components/Header'
+import { TaskSection } from './components/TaskSection'
 import './global.css'
 
 function App() {
   return (
     <>
-      <h1>APP-TO-DO-LIST</h1>
+      <Header /> 
+      <TaskSection /> 
     </>
   )
 }
