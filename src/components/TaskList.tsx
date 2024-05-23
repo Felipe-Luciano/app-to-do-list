@@ -1,33 +1,42 @@
-import {useState, useEffect} from 'react'
-import style from './TaskList.module.css'
+import {useState, FormEvent, ChangeEvent} from 'react'
 import {PlusCircle} from 'phosphor-react'
+import {v4 as uuidv4} from 'uuid'
+
+import style from './TaskList.module.css'
 
 import clipBoardImg from '../assets/Clipboard.png'
 import { TaskItem } from './TaskItem';
 
 interface Task {
-    id: number; 
+    id: string; 
     description: string;
 }
 
 export function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([])
+    const [newTask, setNewTask] = useState('')
 
-    
-    useEffect(() => {
-        setTasks([
-            {id: 1, description: "teste teste"},
-            {id: 2, description: "Taks escrita nessa parte da jason sussu f1 de porsche falr vim da porsche falr vim d porsche falr vim d"},
-            {id: 3, description: "Taks escrita nessa parte da jason  vim da favela vou ta sozinho teste teste teste"},
-            {id: 4, description: "Taks escrita nessa parte da jason sussu f1 de porsche falr vim da porsche falr vim d porsche falr vim d"},
-        ])
-    }, [])
+    function handleCreateNewTask(event: FormEvent) {
+        event.preventDefault()
+
+        const newTaskObject = {
+            id: uuidv4(),
+            description: newTask,
+        }
+
+        setTasks([...tasks, newTaskObject])
+        setNewTask('')
+    }
+
+    function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+        setNewTask(event.target.value)
+    }
     
     return(
         <section className={style.taskSection}>
-            <form className={style.taskForm}>
-                <input type="text" placeholder='Adicione uma nova tarefa'/>
-                <button type="submit">Criar <PlusCircle color='var(--gray-100)' size={16}/></button>
+            <form onSubmit={handleCreateNewTask} className={style.taskForm}>
+                <input value={newTask} onChange={handleNewTaskChange} type="text" placeholder='Adicione uma nova tarefa' required/>
+                <button className={style.formButton} type="submit">Criar <PlusCircle color='var(--gray-100)' size={16}/></button>
             </form>
             <main className={style.taskList}>
                 <header className={style.taskListHeader}>
