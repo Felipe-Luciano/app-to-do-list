@@ -18,13 +18,28 @@
     height: 3.375rem;
 }
 
-.taskForm > input {
+.taskForm .customInput {
+    position: relative;
     width: 100%;
     border-radius: 8px;
-    padding: 1rem 1rem; 
+    padding: 1rem 1rem;
     background: var(--gray-500);
     border: 0;
     color: var(--gray-100);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.customInput .input {
+    width: 100%;
+    background: var(--gray-500);
+    border: 0;
+    color: var(--gray-100);
+}
+
+.customInput .defaultInputText {
+    white-space: nowrap;
 }
 
 .taskForm .formButton {

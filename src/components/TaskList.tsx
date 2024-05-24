@@ -16,6 +16,7 @@ interface Task {
 export function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([])
     const [newTask, setNewTask] = useState('')
+    const [isFocused, setIsFocused] = useState(false);
 
     function handleCreateNewTask(event: FormEvent) {
         event.preventDefault()
@@ -59,11 +60,24 @@ export function TaskList() {
             }
         }, 0)
     }
+
+    const handleFocus = () => setIsFocused(true)
+    const handleBlur = () => setIsFocused(false)
     
     return(
         <section className={style.taskSection}>
             <form onSubmit={handleCreateNewTask} className={style.taskForm}>
-                <input value={newTask} onChange={handleNewTaskChange} type="text" placeholder='Adicione uma nova tarefa' required/>
+                <div 
+                    style={{boxShadow: isFocused ? "0 0 0 2px var(--purple-600)" : "none"}} 
+                    className={style.customInput}
+                    onFocus={handleFocus} 
+                    onBlur={handleBlur}
+                >
+                    {
+                        isFocused && <span className={style.defaultInputText}>Descrição da tarefa | </span>
+                    }
+                    <input className={style.input} value={newTask} onChange={handleNewTaskChange} type="text" placeholder={isFocused ? "" : "Adicione uma nova tarefa"} required />
+                </div>
                 <button className={style.formButton} type="submit">Criar <PlusCircle color='var(--gray-100)' size={16}/></button>
             </form>
             <main className={style.taskList}>
