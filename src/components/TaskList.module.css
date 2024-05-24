@@ -40,7 +40,7 @@
     color: var(--gray-100);
     gap: 0.5rem;
     padding: 1rem 1rem;
-    transition: background .5s ease-in-out;
+    transition: background .3s ease-in-out;
 }
 
 .taskForm .formButton:hover {

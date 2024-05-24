@@ -24,8 +24,9 @@
     line-height: 140%;
 }
 
-.task .trashIcon {
+.task .trashIconWrapper {
     position: absolute;
+    border-radius: 4px;
     top: 1rem;
     left: 43.5rem;
     width: 1.5rem;
@@ -33,4 +34,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.task .trashIconWrapper:hover {
+    background: var(--gray-400);
+}
+
+.task .trashIconWrapper .trashIcon {
+    size: 0.875rem; 
+    color: var(--gray-300);
+}
+
+.task .trashIconWrapper:hover .trashIcon {
+    color: var(--red-500);
 }

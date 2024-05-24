@@ -31,6 +31,11 @@ export function TaskList() {
     function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
         setNewTask(event.target.value)
     }
+
+    function deleteComment(id: string) {
+        const newTasks = tasks.filter(task => task.id !== id)
+        setTasks(newTasks)
+    }
     
     return(
         <section className={style.taskSection}>
@@ -43,7 +48,7 @@ export function TaskList() {
                     <div>
                         <strong className={style.created}>Tarefas criadas</strong>
                         <div className={style.infoCircle}>
-                            <strong>0</strong>
+                            <strong>{tasks.length}</strong>
                         </div>
                     </div>
                     <div>
@@ -64,7 +69,7 @@ export function TaskList() {
                 : 
                     tasks.map(task => {
                         return(
-                            <TaskItem key={task.id} description={task.description} />
+                            <TaskItem key={task.id} id={task.id} description={task.description} onDeleteComment={deleteComment}/>
                         )
                     })
                 }
