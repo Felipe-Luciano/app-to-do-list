@@ -49,6 +49,16 @@ export function TaskList() {
         })
         setTasks(newTasks)
     }
+
+    function countTasksDone() {
+        return tasks.reduce((accumulator, task) => {
+            if(task.isDone) {
+                return accumulator + 1
+            } else {
+                return accumulator
+            }
+        }, 0)
+    }
     
     return(
         <section className={style.taskSection}>
@@ -67,7 +77,7 @@ export function TaskList() {
                     <div>
                         <strong className={style.done}>Concluídas</strong>
                         <div className={style.infoCircle}>
-                            <strong>0</strong>
+                            <strong>{`${countTasksDone()} de ${tasks.length}`}</strong>
                         </div>
                     </div>
                 </header>
