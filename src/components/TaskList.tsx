@@ -10,6 +10,7 @@ import { TaskItem } from './TaskItem';
 interface Task {
     id: string; 
     description: string;
+    isDone: boolean; 
 }
 
 export function TaskList() {
@@ -22,6 +23,7 @@ export function TaskList() {
         const newTaskObject = {
             id: uuidv4(),
             description: newTask,
+            isDone: false,
         }
 
         setTasks([...tasks, newTaskObject])
@@ -34,6 +36,17 @@ export function TaskList() {
 
     function deleteComment(id: string) {
         const newTasks = tasks.filter(task => task.id !== id)
+        setTasks(newTasks)
+    }
+
+    function toggleTaskCompletion(id: string) {
+        const newTasks = tasks.map(task => {
+            if(task.id === id) {
+                task.isDone = !task.isDone;
+                return task
+            } 
+            return task
+        })
         setTasks(newTasks)
     }
     
@@ -69,7 +82,14 @@ export function TaskList() {
                 : 
                     tasks.map(task => {
                         return(
-                            <TaskItem key={task.id} id={task.id} description={task.description} onDeleteComment={deleteComment}/>
+                            <TaskItem 
+                                key={task.id} 
+                                id={task.id} 
+                                description={task.description} 
+                                isDone={task.isDone}
+                                onDeleteComment={deleteComment}
+                                onToggleTaskCompletion={toggleTaskCompletion}
+                            />
                         )
                     })
                 }
