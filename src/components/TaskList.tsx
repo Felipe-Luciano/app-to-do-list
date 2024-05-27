@@ -1,4 +1,4 @@
-import {useState, FormEvent, ChangeEvent} from 'react'
+import {useState, FormEvent, ChangeEvent, InvalidEvent} from 'react'
 import {PlusCircle} from 'phosphor-react'
 import {v4 as uuidv4} from 'uuid'
 
@@ -32,6 +32,7 @@ export function TaskList() {
     }
 
     function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('')
         setNewTask(event.target.value)
     }
 
@@ -61,6 +62,10 @@ export function TaskList() {
         }, 0)
     }
 
+    function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('Esse campo é obrigatório!')
+    }
+
     const handleFocus = () => setIsFocused(true)
     const handleBlur = () => setIsFocused(false)
     
@@ -76,7 +81,15 @@ export function TaskList() {
                     {
                         isFocused && <span className={style.defaultInputText}>Descrição da tarefa | </span>
                     }
-                    <input className={style.input} value={newTask} onChange={handleNewTaskChange} type="text" placeholder={isFocused ? "" : "Adicione uma nova tarefa"} required />
+                    <input 
+                        className={style.input} 
+                        value={newTask} 
+                        onChange={handleNewTaskChange} 
+                        onInvalid={handleNewTaskInvalid}
+                        type="text" 
+                        placeholder={isFocused ? "" : "Adicione uma nova tarefa"} 
+                        required 
+                    />
                 </div>
                 <button className={style.formButton} type="submit">Criar <PlusCircle color='var(--gray-100)' size={16}/></button>
             </form>

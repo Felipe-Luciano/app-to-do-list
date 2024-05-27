@@ -5,6 +5,7 @@
     width: 100%;
     align-items: center;
     margin-bottom: 1.5rem;
+    padding: 0 1rem;
 }
 
 .taskSection .taskForm {
